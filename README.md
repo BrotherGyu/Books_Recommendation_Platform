@@ -43,7 +43,7 @@
 
 > Streamlit 어플리케이션을 실행하는 주 파일입니다. 사용자 입력을 처리하고 결과로 나오는 책 추천을 표시합니다.
 >
-> 상위 book list를 하위 묘듈을 통해 반환을 받은 후 `info2idx.py`의 `info_data_load()`를 통해 books data를 불러온 후 request를 통해 책의 이미지와 이름, 작가, 출판 년도를 Streamlit 화면에 출력합니다
+> 상위 book list를 하위 묘듈을 통해 반환을 받은 후 `info2idx.py`의 `info_data_load()`를 통해 books data를 불러온 후 request를 통해 책의 이미지를 불러오고 로컬 데이터셋에서 이름, 작가, 출판 년도를 합쳐 Streamlit 화면에 출력합니다
 
 ### - data 폴더
 

@@ -4,8 +4,10 @@ import os
 
 def predict_dataframe_load(age: int, location_country: int, language: int,
                            use_category: bool= False, category: int = None) -> pd.DataFrame:
-    path = os.getcwd()
-    idx2info = pd.read_pickle(path+'/data/idx2info.pkl')
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    file_path = os.path.join(current_dir, '..', 'data', 'idx2info.pkl')
+    idx2info = pd.read_pickle(file_path)
+    
     len_idx2info = len(idx2info)
 
     if use_category:

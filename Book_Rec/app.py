@@ -1,8 +1,8 @@
 import streamlit as st
 import numpy as np
 import requests
-import io
-from PIL import Image, JpegImagePlugin
+
+from PIL import Image
 
 from src import book_recommend_info
 from src import info_data_load

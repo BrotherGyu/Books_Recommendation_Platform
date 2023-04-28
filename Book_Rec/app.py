@@ -10,6 +10,7 @@ Usage:
 Functions:
     main(): The main function that handles the user interface and interaction.
     make_input_box(country_dict, language_fullname_dict, category_dict, selected_item): Creates the input box UI elements for user input and returns the corresponding values.
+    request_img(url): Sends an HTTP GET request to the URL and returns the resulting image.
 
 Dependencies:
     - streamlit

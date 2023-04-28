@@ -7,10 +7,10 @@ from PIL import Image
 from src import book_recommend_info
 from src import info_data_load
 
-# SETTING PAGE CONFIG TO WIDE MODE
-st.set_page_config(layout="wide")
 
 def main():
+    # SETTING PAGE CONFIG TO WIDE MODE
+    st.set_page_config(layout="wide")
     st.header('Please enter your information')
     st.markdown("---")
 
@@ -22,24 +22,7 @@ def main():
     country_dict, language_dict, language_fullname_dict, category_dict, idx2info = info_data_load()
 
     if selected_item == 'Use Category':
-        age = st.number_input('Age [5 ~ 100]',min_value=5, max_value=100)
-        age_process = min(int(age)//10 , 6)
-
-        country = st.selectbox('Country',
-                                        country_dict.keys())
-        language = st.selectbox('Language',
-                                        language_fullname_dict.values())
-        ## Convert language values to visibility
-        values_list = list(language_fullname_dict.values())
-        language = list(language_fullname_dict.keys())[values_list.index(language)]
-
-        category = st.selectbox('Category',
-                                        category_dict.keys())
-
-        st.sidebar.markdown("---")
-        st.write('[age: {}, country: {}, language: {}, category: {}]'.format(age, country, language_fullname_dict[language], category))
-        st.markdown("---")
-        books_number = st.number_input('Number of books to be recommended [10 ~ 100]',min_value=10, max_value=100)
+        age_process, country, language, category, books_number = make_input_box(country_dict, language_fullname_dict, category_dict, selected_item)
         
         if st.button('Recommend Books'):
             age_inp = age_process
@@ -62,27 +45,8 @@ def main():
                 col2.write("Year of Publication - {}".format(idx2info[idx][2]))
                 st.markdown("---")
 
-            
-
-
-    
     elif selected_item == 'Not Use Category':
-        age = st.number_input('Age [5 ~ 100]',min_value=5, max_value=100)
-        age_process = min(int(age)//10 , 6)
-
-        country = st.selectbox('Country',
-                                        country_dict.keys())
-        language = st.selectbox('Language',
-                                        language_fullname_dict.values())
-        ## Convert language values to visibility
-        values_list = list(language_fullname_dict.values())
-        language = list(language_fullname_dict.keys())[values_list.index(language)]
-
-
-        st.sidebar.markdown("---")
-        st.write('[age: {}, country: {}, language: {}]'.format(age, country, language_fullname_dict[language]))
-        st.markdown("---")
-        books_number = st.number_input('Number of books to be recommended [10 ~ 100]',min_value=10, max_value=100)
+        age_process, country, language, books_number = make_input_box(country_dict, language_fullname_dict, category_dict, selected_item)
         
         if st.button('Recommend Books'):
             age_inp = age_process
@@ -108,10 +72,37 @@ def main():
 
     st.sidebar.markdown("---")
     st.sidebar.subheader("Contact Us")
-
     st.sidebar.write("BoostCamp AI Tech 5th RecSys")
     st.sidebar.write("GitHub: https://github.com/BrotherGyu")
     st.sidebar.write("Email: brothergyu98@gmail.com")
+
+def make_input_box(country_dict, language_fullname_dict, category_dict, selected_item):
+    age = st.number_input('Age [5 ~ 100]',min_value=5, max_value=100)
+    age_process = min(int(age)//10 , 6)
+
+    country = st.selectbox('Country', country_dict.keys())
+    language = st.selectbox('Language', language_fullname_dict.values())
+
+    ## Convert language values to visibility
+    values_list = list(language_fullname_dict.values())
+    language = list(language_fullname_dict.keys())[values_list.index(language)]
+
+    if selected_item == 'Use Category':
+        category = st.selectbox('Category', category_dict.keys())
+        st.sidebar.markdown("---")
+        st.write('[age: {}, country: {}, language: {}, category: {}]'.format(age, country, language_fullname_dict[language], category))
+    else:
+        st.sidebar.markdown("---")
+        st.write('[age: {}, country: {}, language: {}]'.format(age, country, language_fullname_dict[language]))
+
+    st.markdown("---")
+    books_number = st.number_input('Number of books to be recommended [10 ~ 100]',min_value=10, max_value=100)
+
+    if selected_item == 'Use Category':
+        return age_process, country, language, category, books_number
+    else:
+        return age_process, country, language, books_number
+
 if __name__=='__main__':
     main()
     print('done')

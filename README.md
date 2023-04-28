@@ -111,7 +111,6 @@
 ---
 
 - Python: PSF (Python Software Foundation) 라이선스
-- CatBoost: Apache-2.0 라이선스
 - Streamlit: Apache-2.0 라이선스
 - Pandas: BSD-3-Clause 라이선스
 - NumPy: BSD-3-Clause 라이선스

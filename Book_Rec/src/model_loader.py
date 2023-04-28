@@ -1,3 +1,23 @@
+"""
+This module provides a function for loading a pre-trained machine learning model used for generating personalized book recommendations.
+
+Functions:
+    predict_model_load(use_category: bool = False) -> Any:
+        Loads a pre-trained machine learning model used for generating personalized book recommendations.
+        If `use_category` is True, the function loads a model that considers book categories. Otherwise, the function loads a model that does not consider book categories.
+        Returns the loaded machine learning model.
+        
+Parameters:
+    - use_category (bool, optional): Whether or not to consider the book category in generating recommendations. Defaults to False.
+    
+Returns:
+    - model (Any): The loaded machine learning model.
+    
+Dependencies:
+    - pickle
+    - os
+"""
+
 import pickle
 import os
 

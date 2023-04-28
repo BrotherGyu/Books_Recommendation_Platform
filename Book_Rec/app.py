@@ -1,3 +1,31 @@
+"""
+This Streamlit web app provides personalized book recommendations based on the user's input. The user can choose to get recommendations with or without considering book categories.
+
+Usage:
+    Run the script with Streamlit to start the web app:
+    ```
+    streamlit run app.py
+    ```
+
+Functions:
+    main(): The main function that handles the user interface and interaction.
+    make_input_box(country_dict, language_fullname_dict, category_dict, selected_item): Creates the input box UI elements for user input and returns the corresponding values.
+
+Dependencies:
+    - streamlit
+    - numpy
+    - requests
+    - PIL
+    - src (local package)
+        - book_recommend_info
+        - info_data_load
+
+Author:
+    BoostCamp AI Tech 5th RecSys
+    GitHub: https://github.com/BrotherGyu
+    Email: brothergyu98@gmail.com
+"""
+
 import streamlit as st
 import numpy as np
 import requests

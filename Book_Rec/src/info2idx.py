@@ -1,4 +1,22 @@
-import pandas as pd
+"""
+This module provides a function for loading the necessary data used by the recommender system.
+
+Functions:
+    info_data_load() -> Tuple[Dict[str, int], Dict[str, int], Dict[str, str], Dict[str, int], Dict[int, Tuple[str, str, int, str]]]:
+        Loads the necessary data used by the recommender system.
+
+Returns:
+    - country (Dict[str, int]): A dictionary mapping country names to their corresponding IDs in the database.
+    - language (Dict[str, int]): A dictionary mapping language names to their corresponding IDs in the database.
+    - language_fullname (Dict[str, str]): A dictionary mapping language to their corresponding full names in the database.
+    - category (Dict[str, int]): A dictionary mapping book category names to their corresponding IDs in the database.
+    - idx2info (Dict[int, Tuple[str, str, int, str]]): A dictionary mapping book IDs to their corresponding information (title, author, year of publication, and URL).
+    
+Dependencies:
+    - pickle
+    - os
+"""
+
 import pickle
 import os
 

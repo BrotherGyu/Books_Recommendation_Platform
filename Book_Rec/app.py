@@ -65,7 +65,7 @@ def main():
             for idx in list(idxs):
                 url = idx2info[idx][3]
                 # Send an HTTP GET request to the URL
-                img = np.asarray(Image.open(requests.get(url, stream=True, headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}).raw))
+                img = request_img(url)
                 col1, col2 = st.columns(2)
                 col1.image(img, width=100)
                 col2.write("Book Title - {}".format(idx2info[idx][0]))
@@ -89,7 +89,7 @@ def main():
             for idx in list(idxs):
                 url = idx2info[idx][3]
                 # Send an HTTP GET request to the URL
-                img = np.asarray(Image.open(requests.get(url, stream=True, headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}).raw))
+                img = request_img(url)
                 col1, col2 = st.columns(2)
                 col1.image(img, width=100)
                 col2.write("Book Title - {}".format(idx2info[idx][0]))
@@ -104,6 +104,8 @@ def main():
     st.sidebar.write("GitHub: https://github.com/BrotherGyu")
     st.sidebar.write("Email: brothergyu98@gmail.com")
 
+
+# Creates the input box UI elements for user input and returns the corresponding values
 def make_input_box(country_dict, language_fullname_dict, category_dict, selected_item):
     age = st.number_input('Age [5 ~ 100]',min_value=5, max_value=100)
     age_process = min(int(age)//10 , 6)
@@ -130,6 +132,14 @@ def make_input_box(country_dict, language_fullname_dict, category_dict, selected
         return age_process, country, language, category, books_number
     else:
         return age_process, country, language, books_number
+
+
+# Send an HTTP GET request to the URL
+def request_img(url):
+    header = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
+    img = np.asarray(Image.open(requests.get(url, stream=True, headers = header).raw))
+    return img
+
 
 if __name__=='__main__':
     main()

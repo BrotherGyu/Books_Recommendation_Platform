@@ -1,7 +1,3 @@
-import catboost as cb
-import pickle
-import pandas as pd
-
 from .data_loader import predict_dataframe_load
 from .model_loader import predict_model_load
 
@@ -20,15 +16,3 @@ def book_recommend_info(age: int, location_country: int, language: int,
         data = predict_dataframe_load(age, location_country,language, use_category)
         rating_pred = model.predict(data)
         return rating_pred
-
-
-## test code
-if __name__=='__main__':
-    age = 3
-    location_country = 1
-    language = 0
-    use_category = True
-    category= 2
-    predict_li = book_recommend_info(age, location_country,language,use_category, category)
-    print(max(predict_li), min(predict_li))
-
